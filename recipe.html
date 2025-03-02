@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Details - Nasta House</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const params = new URLSearchParams(window.location.search);
+            const recipeName = params.get("recipe");
+            const recipes = {
+                samosa: {
+                    title: "Samosa",
+                    img: "https://www.cookwithnabeela.com/wp-content/uploads/2024/02/AlooSamosa3-500x500.webp",
+                    description: "A crispy and spicy Indian snack filled with potatoes and peas.",
+                    ingredients: [
+                        "2 cups all-purpose flour",
+                        "1/2 cup water",
+                        "1/2 tsp salt",
+                        "2 boiled potatoes, mashed",
+                        "1/2 cup peas",
+                        "1 tsp cumin seeds",
+                        "1/2 tsp garam masala",
+                        "Oil for frying"
+                    ],
+                    steps: [
+                        "Mix flour, water, and salt to make a dough. Rest for 30 minutes.",
+                        "Prepare stuffing by frying cumin, adding potatoes, peas, and spices.",
+                        "Roll dough, cut into halves, shape into cones, and fill with stuffing.",
+                        "Seal and deep-fry until golden brown. Serve hot with chutney!"
+                    ]
+                },
+                dosa: {
+                    title: "Dosa",
+                    img: "https://www.daringgourmet.com/wp-content/uploads/2023/06/Dosa-Recipe-3.jpg",
+                    description: "A thin, crispy South Indian crepe made from rice and lentils.",
+                    ingredients: [
+                        "2 cups rice",
+                        "1 cup urad dal (black gram)",
+                        "1/2 tsp salt",
+                        "1/4 cup water",
+                        "Oil for cooking"
+                    ],
+                    steps: [
+                        "Soak rice and urad dal separately for 6 hours, then grind into a smooth batter.",
+                        "Ferment overnight, then mix with salt and water.",
+                        "Heat a pan, pour batter, spread into a thin circle, and drizzle oil.",
+                        "Cook until crisp. Serve with chutney and sambar."
+                    ]
+                },
+                chai: {
+                    title: "Masala Chai",
+                    img: "https://carameltintedlife.com/wp-content/uploads/2021/01/Masala-Chai-.jpg",
+                    description: "Aromatic Indian tea brewed with spices like cardamom & ginger.",
+                    ingredients: [
+                        "2 cups water",
+                        "1 cup milk",
+                        "2 tsp tea leaves",
+                        "1 inch ginger (grated)",
+                        "2 cardamom pods",
+                        "1 cinnamon stick",
+                        "Sugar to taste"
+                    ],
+                    steps: [
+                        "Boil water with ginger, cardamom, and cinnamon for 5 minutes.",
+                        "Add tea leaves and simmer for another 2 minutes.",
+                        "Pour in milk and sugar, boil for 2 more minutes.",
+                        "Strain and serve hot!"
+                    ]
+                },
+                poha: {
+                    title: "Poha",
+                    img: "https://www.nehascookbook.com/wp-content/uploads/2022/09/Vegetable-poha-WS-1.jpg",
+                    description: "A light and flavorful flattened rice dish with peanuts & veggies.",
+                    ingredients: [
+                        "2 cups poha (flattened rice)",
+                        "1/2 cup peanuts",
+                        "1 onion, chopped",
+                        "1/2 tsp turmeric",
+                        "1 tsp mustard seeds",
+                        "1 green chili, chopped",
+                        "Salt to taste"
+                    ],
+                    steps: [
+                        "Wash poha and drain excess water.",
+                        "Heat oil in a pan, add mustard seeds, peanuts, and onions.",
+                        "Add turmeric, salt, and poha. Mix well.",
+                        "Cook for 2 minutes and serve hot!"
+                    ]
+                }
+            };
+
+            if (recipeName && recipes[recipeName]) {
+                const recipe = recipes[recipeName];
+                document.getElementById("recipe-title").textContent = recipe.title;
+                document.getElementById("recipe-img").src = recipe.img;
+                document.getElementById("recipe-description").textContent = recipe.description;
+
+                const ingredientsList = document.getElementById("recipe-ingredients");
+                ingredientsList.innerHTML = "";
+                recipe.ingredients.forEach(item => {
+                    const li = document.createElement("li");
+                    li.textContent = item;
+                    ingredientsList.appendChild(li);
+                });
+
+                const stepsList = document.getElementById("recipe-steps");
+                stepsList.innerHTML = "";
+                recipe.steps.forEach(step => {
+                    const li = document.createElement("li");
+                    li.textContent = step;
+                    stepsList.appendChild(li);
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1 id="recipe-title"></h1>
+        <p>Delicious Homemade Recipe</p>
+    </header>
+
+    <section class="recipe-details">
+        <img id="recipe-img" src="" alt="Recipe Image">
+        <p id="recipe-description"></p>
+        
+        <h2>Ingredients</h2>
+        <ul id="recipe-ingredients"></ul>
+
+        <h2>Steps</h2>
+        <ol id="recipe-steps"></ol>
+
+        <a href="index.html" class="back-btn">← Back to Home</a>
+    </section>
+
+    <footer>
+        <p>© 2025 Nasta House | Made with ❤ for Indian Food Lovers</p>
+    </footer>
+</body>
+</html>
